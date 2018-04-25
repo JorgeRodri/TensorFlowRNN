@@ -1,0 +1,2 @@
+model_checkpoint_path: "C:\\Users\\jorge.rodriguez\\PycharmProjects\\TensorFlowRNN\\log\\model.ckpt"
+all_model_checkpoint_paths: "C:\\Users\\jorge.rodriguez\\PycharmProjects\\TensorFlowRNN\\log\\model.ckpt"
