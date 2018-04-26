@@ -31,7 +31,6 @@ import pandas as pd
 import itertools
 
 import numpy as np
-from six.moves import urllib
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 
@@ -82,16 +81,18 @@ def normalize_text(text):
 
 
 data_path = 'data/'
-file_df = 'iVooxData.pkl'
-df1 = pd.read_pickle(data_path + 'texts_dataframe_cc1_ep0_progs5000.pkl')
-df2 = pd.read_pickle(data_path + 'texts_dataframe_cc1_ep10_progs500.pkl')
-df3 = pd.read_pickle(data_path + 'texts_dataframe_cc1_ep100_progs50.pkl')
-df = df1.append(df2.append(df3))
+# file_df = 'iVooxData.pkl'
+# df1 = pd.read_pickle(data_path + 'texts_dataframe_cc1_ep0_progs5000.pkl')
+# df2 = pd.read_pickle(data_path + 'texts_dataframe_cc1_ep10_progs500.pkl')
+# df3 = pd.read_pickle(data_path + 'texts_dataframe_cc1_ep100_progs50.pkl')
+# df = df1.append(df2.append(df3))
+df = pd.read_pickle(data_path + 'big_data.pkl')
 vocabulary = df['title'].append(df['description'])
 vocabulary = vocabulary.apply(normalize_text)
 vocabulary = list(vocabulary.apply(lambda x: x.split()))
 vocabulary = list(itertools.chain.from_iterable(vocabulary))
 vocabulary_size = 50000
+print(len(vocabulary))
 
 
 def build_dataset(words, n_words):
@@ -347,7 +348,7 @@ try:
 
     tsne = TSNE(
       perplexity=30, n_components=2, init='pca', n_iter=5000, method='exact')
-    plot_only = 250
+    plot_only = 500
     low_dim_embs = tsne.fit_transform(final_embeddings[:plot_only, :])
     labels = [reverse_dictionary[i] for i in xrange(plot_only)]
     # plot_with_labels(low_dim_embs, labels, os.path.join(gettempdir(), 'tsne.png')).show()

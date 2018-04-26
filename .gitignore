@@ -99,8 +99,11 @@ ENV/
 .mypy_cache/
 
 # local files
-/MNIST_data
-/logs
-/models
-/data
-/tmp
+MNIST_data/
+log/
+logs/
+models/
+data/
+tmp/
+TFmodels/log/
+TF tutorials/MNIST_data/
